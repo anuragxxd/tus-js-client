@@ -1,14 +1,32 @@
 {
-  "name": "tus-js-client",
-  "version": "4.2.3",
+  "name": "@anurag_gupta/tus-js-client",
+  "version": "4.2.10",
   "description": "A pure JavaScript client for the tus resumable upload protocol",
-  "main": "lib.es5/node/index.js",
-  "module": "lib.esm/node/index.js",
-  "files": ["lib/**/*", "lib.es5/**/*", "lib.esm/**/*", "dist/**/*", "lib/index.d.ts"],
+  "main": "lib.es5/browser/index.js",
+  "module": "lib.esm/browser/index.js",
+  "files": [
+    "lib/**/*",
+    "lib.es5/**/*",
+    "lib.esm/**/*",
+    "dist/**/*",
+    "lib/index.d.ts"
+  ],
   "browser": {
-    "./lib.es5/node/index.js": "./lib.es5/browser/index.js",
-    "./lib.esm/node/index.js": "./lib.esm/browser/index.js",
-    "./lib/node/index.js": "./lib/browser/index.js"
+    "./lib.es5/browser/index.js": "./lib.es5/browser/index.js",
+    "./lib.esm/browser/index.js": "./lib.esm/browser/index.js",
+    "./lib/browser/index.js": "./lib/browser/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib.esm/browser/index.js",
+      "require": "./lib.es5/browser/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./browser": {
+      "import": "./lib.esm/browser/index.js",
+      "require": "./lib.es5/browser/index.js",
+      "types": "./lib/index.d.ts"
+    }
   },
   "types": "./lib/index.d.ts",
   "engines": {
@@ -18,7 +36,15 @@
     "type": "git",
     "url": "https://github.com/tus/tus-js-client.git"
   },
-  "keywords": ["tus", "resumable", "upload", "protocol", "progress", "file", "browser"],
+  "keywords": [
+    "tus",
+    "resumable",
+    "upload",
+    "protocol",
+    "progress",
+    "file",
+    "browser"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tus/tus-js-client/issues"
@@ -59,8 +85,7 @@
     "is-stream": "^2.0.0",
     "js-base64": "^3.7.2",
     "lodash.throttle": "^4.1.1",
-    "proper-lockfile": "^4.1.2",
-    "url-parse": "^1.5.7"
+    "proper-lockfile": "^4.1.2"
   },
   "scripts": {
     "build-test-bundle": "mkdir -p dist && browserify test/spec/browser-index.js -t [ babelify --plugins [ @babel/transform-modules-commonjs ] ] -d -o dist/browser-test-bundle.js",
